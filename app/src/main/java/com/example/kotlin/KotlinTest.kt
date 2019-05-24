@@ -13,7 +13,7 @@ object KotlinTest {
     }
 
     fun method() {
-        println("kotlin method println normalStr = $normalStr")
+        println("kotlin oldMethod println normalStr = $normalStr")
     }
 
     var user: User? = null
@@ -29,7 +29,43 @@ object KotlinTest {
             User("Kotlin 2", "girl")
         }
         println("after let user name = ${result?.name}")
+        println("##############")
+        // lambda
+
+
+        var r = test(10) { num1: Int, num2: Int ->
+            var temp = 100
+            println("in lambda $temp")
+            num1 * num2 + num1
+        }
+        println("result = $r")
+        println("fibnoacci2()调用：")
+        for (i in fibnoacci2()) {
+            if (i > 100) break
+            println(i)
+        }
     }
+}
+
+fun fibnoacci2(): Iterable<Long> { //返回值为一个迭代器
+    var first = 0L
+    var second = 1L
+    return Iterable {
+        object : LongIterator() { //匿名对象
+            override fun nextLong(): Long {
+                val result = second
+                second += first
+                first = second - first
+                return result
+            }
+
+            override fun hasNext(): Boolean = true
+        }
+    }
+}
+
+fun test(a: Int, b: (num1: Int, num2: Int) -> Int): Int {
+    return a + b.invoke(3, 5)
 }
 
 fun String.print() {
@@ -37,7 +73,12 @@ fun String.print() {
 }
 
 fun String.format(): String {
-    return "format String : $this"
+    return "String.format : $this"
+}
+
+fun JavaTest.newMethod() {
+    this.oldMethod()
+    println("JavaTest.newMethod : $this")
 }
 
 data class User(var name: String = "", var sex: String = "0")

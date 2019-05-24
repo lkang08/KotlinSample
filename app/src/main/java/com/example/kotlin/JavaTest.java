@@ -1,8 +1,5 @@
 package com.example.kotlin;
 
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 public class JavaTest {
     public static void main(String[] args) {
         KotlinTest.test();
@@ -10,9 +7,8 @@ public class JavaTest {
         System.out.println("jvmStr = " + KotlinTest.jvmStr + " , normalStr = " + KotlinTest.INSTANCE.getNormalStr());
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
-        MyViewHolder(View view) {
-            super(view);
-        }
+    void oldMethod() {
+        System.out.println("JavaTest.oldMethod : " + this);
     }
+
 }
