@@ -19,9 +19,6 @@ object KotlinTest {
     var user: User? = null
     @JvmStatic
     fun main(args: Array<String>) {
-        var s = "abcd"
-        s.print()
-        s.format()
         user = User("Kotlin", "man")
         var result = user?.let {
             println("user name = ${this}")
@@ -66,19 +63,6 @@ fun fibnoacci2(): Iterable<Long> { //返回值为一个迭代器
 
 fun test(a: Int, b: (num1: Int, num2: Int) -> Int): Int {
     return a + b.invoke(3, 5)
-}
-
-fun String.print() {
-    println("String.print : $this")
-}
-
-fun String.format(): String {
-    return "String.format : $this"
-}
-
-fun JavaTest.newMethod() {
-    this.oldMethod()
-    println("JavaTest.newMethod : $this")
 }
 
 data class User(var name: String = "", var sex: String = "0")

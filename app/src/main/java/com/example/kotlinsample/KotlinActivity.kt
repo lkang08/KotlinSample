@@ -4,10 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.example.kotlin.JavaTest
-import com.example.kotlin.format
-import com.example.kotlin.newMethod
-import com.example.kotlin.print
+import com.example.kotlin.toast
 import kotlinx.android.synthetic.main.activity_kotlin.*
 
 class KotlinActivity : Activity() {
@@ -22,6 +19,8 @@ class KotlinActivity : Activity() {
             myText.textSize = resources.getDimension(R.dimen.sp18)
             myText.setTextColor(resources.getColor(R.color.colorPrimary, null))
             initRecyclerView()
+        }
+        toastBtn.setOnClickListener {
             extensionFunction(user)
         }
     }
@@ -34,10 +33,7 @@ class KotlinActivity : Activity() {
     }
 
     private fun extensionFunction(user: User?) {
-        var test = JavaTest()
-        test.newMethod()
-        user?.name?.print()
-        Log.d(tag, user?.name?.format())
+        toast("toast from activity extension function")
     }
 
     private fun initData(): List<User> {
