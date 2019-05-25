@@ -4,8 +4,12 @@ import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import com.example.kotlin.toast
+import com.example.kotlin.myToast
 import kotlinx.android.synthetic.main.activity_kotlin.*
+import org.jetbrains.anko.alert
+import org.jetbrains.anko.noButton
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.yesButton
 
 class KotlinActivity : Activity() {
     private val tag = "System.out"
@@ -23,6 +27,9 @@ class KotlinActivity : Activity() {
         toastBtn.setOnClickListener {
             extensionFunction(user)
         }
+        ankoBtn.setOnClickListener {
+            anko()
+        }
     }
 
     private fun initRecyclerView() {
@@ -33,7 +40,14 @@ class KotlinActivity : Activity() {
     }
 
     private fun extensionFunction(user: User?) {
-        toast("toast from activity extension function")
+        myToast("myToast from activity extension function")
+    }
+
+    private fun anko() {
+        alert("message", "title") {
+            yesButton { toast("yes") }
+            noButton { toast("no") }
+        }.show()
     }
 
     private fun initData(): List<User> {
