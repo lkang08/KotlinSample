@@ -12,7 +12,7 @@ object KotlinTest {
         normalStr = "hello kotlin"
     }
 
-    fun method() {
+    fun testMethod() {
         println("kotlin oldMethod println normalStr = $normalStr")
     }
 
@@ -29,19 +29,35 @@ object KotlinTest {
         println("##############")
         // lambda
 
+        function()
 
+        println("##############")
         var r = test(10) { num1: Int, num2: Int ->
             var temp = 100
             println("in lambda $temp")
             num1 * num2 + num1
         }
         println("result = $r")
-        println("fibnoacci2()调用：")
+        /*println("fibnoacci2()调用：")
         for (i in fibnoacci2()) {
             if (i > 100) break
             println(i)
-        }
+        }*/
     }
+}
+
+fun function() {
+    var person = arrayListOf(User(name = "zhangsan"),
+        User(name = "lisi", age = 20),
+        User(name = "wangwu", age = 30),
+        User(name = "lily", age = 18))
+    println(person.filter { it.age > 10 })
+    println(person.map { it.name })
+    println(person.all { it.age > 18 })
+    println(person.any { it.age < 18 })
+    println(person.count { it.age >= 18 })
+    println(person.maxBy { it.age })
+    println(person.groupBy { it.name.length })
 }
 
 fun fibnoacci2(): Iterable<Long> { //返回值为一个迭代器
@@ -65,4 +81,4 @@ fun test(a: Int, b: (num1: Int, num2: Int) -> Int): Int {
     return a + b.invoke(3, 5)
 }
 
-data class User(var name: String = "", var sex: String = "0")
+data class User(var name: String = "", var sex: String = "0", var age: Int = 10)

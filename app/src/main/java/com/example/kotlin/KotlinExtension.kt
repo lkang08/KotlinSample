@@ -5,7 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.widget.Toast
 
-fun Context.myToast(message: CharSequence, duration: Int = Toast.LENGTH_LONG) {
+inline fun Context.myToast(message: CharSequence, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, duration).show()
 }
 
@@ -16,11 +16,12 @@ fun withMethod() {
     paint.textSize = 18.0f
     paint.isAntiAlias = true
 
-    with(paint) {
+    var paint2 = with(paint) {
         color = Color.BLACK
         strokeWidth = 1.0f
         textSize = 18.0f
         isAntiAlias = true
         this
     }
+
 }
