@@ -26,7 +26,9 @@ object KotlinTest {
             User("Kotlin 2", "girl")
         }
         println("after let user name = ${result?.name}")
-        println("##############")
+        println("#######NPE begin #######")
+        npe()
+        println("#######NPE end#######")
         // lambda
 
         function()
@@ -46,11 +48,42 @@ object KotlinTest {
     }
 }
 
+fun npe() {
+    var a: String = "abc"
+    // a = null
+    var aLength = a.length
+
+    var b: String? = "abc"
+    b = null
+    var bLength = b?.length
+
+
+    //1 条件检查
+    bLength = if (b != null) b.length else -1
+
+    //2 安全调用
+    bLength = b?.length
+    var user: User? = User(name = "zhangsan", department = Department(head = User("leader", age = 30)))
+    println(user?.department?.head?.name)
+
+    //3 elvis
+    bLength = b?.length ?: -1
+
+    //4 !!操作符
+    bLength = b!!.length
+
+    //5 安全的类型转换
+    var bLength2: Int? = b as? Int
+
+    println("aLength = $aLength bLength = $bLength")
+}
+
+
 fun function() {
     var person = arrayListOf(User(name = "zhangsan"),
-        User(name = "lisi", age = 20),
-        User(name = "wangwu", age = 30),
-        User(name = "lily", age = 18))
+            User(name = "lisi", age = 20),
+            User(name = "wangwu", age = 30),
+            User(name = "lily", age = 18))
     println(person.filter { it.age > 10 })
     println(person.map { it.name })
     println(person.all { it.age > 18 })
@@ -81,4 +114,6 @@ fun test(a: Int, b: (num1: Int, num2: Int) -> Int): Int {
     return a + b.invoke(3, 5)
 }
 
-data class User(var name: String = "", var sex: String = "0", var age: Int = 10)
+data class User(var name: String = "", var sex: String = "0", var age: Int = 10, var department: Department? = null)
+
+data class Department(var head: User? = null)
