@@ -21,15 +21,15 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
     override fun onBindViewHolder(viewHolder: MyViewHolder, p: Int) {
         var user = data?.get(p) ?: return
-        with(viewHolder) {
-            user.apply {
+        viewHolder.nameTv.text = user.name
+        viewHolder.sexTv.text = if (user.sex == 0) "man" else "girl"
+        viewHolder.descriptionTv.text = user.description
+        viewHolder.iconIg.setImageResource(user.icon)
+
+        data?.get(p)?.run {
+            with(viewHolder) {
                 nameTv.text = name
-                sexTv.text = sex.let {
-                    when (it) {
-                        0 -> "man"
-                        else -> "girl"
-                    }
-                }
+                sexTv.text = if (sex == 0) "man" else "girl"
                 descriptionTv.text = description
                 iconIg.setImageResource(icon)
             }

@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:text="Hello Kotlin"
         android:textSize="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -22,11 +24,11 @@
         android:id="@+id/mButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:text="click"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/toastBtn"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/toastBtn"
@@ -35,9 +37,8 @@
         android:layout_marginStart="8dp"
         android:text="toast"
         android:textSize="15sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ankoBtn"
         app:layout_constraintLeft_toRightOf="@id/mButton"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mButton"
         app:layout_constraintTop_toBottomOf="@id/myText" />
 
     <Button
@@ -47,10 +48,8 @@
         android:layout_marginStart="8dp"
         android:text="anko"
         android:textSize="15sp"
-        app:layout_constraintLeft_toRightOf="@id/toastBtn"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/toastBtn"
-        app:layout_constraintTop_toBottomOf="@id/myText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/FragmentBtn"
+        app:layout_constraintLeft_toRightOf="@id/toastBtn" />
 
     <Button
         android:id="@+id/FragmentBtn"
@@ -59,7 +58,7 @@
         android:layout_marginStart="8dp"
         android:text="Fragment"
         android:textSize="15sp"
-        app:layout_constraintLeft_toRightOf="@id/toastBtn"
+        app:layout_constraintLeft_toRightOf="@id/ankoBtn"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ankoBtn"
         app:layout_constraintTop_toBottomOf="@id/myText" />
@@ -70,17 +69,19 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mButton" />
+        app:layout_constraintTop_toBottomOf="@id/mButton"
+        app:layout_constraintVertical_bias="0.0" />
 
     <FrameLayout
         android:id="@+id/fragmentLL"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:visibility="gone"
         android:background="#ddd"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

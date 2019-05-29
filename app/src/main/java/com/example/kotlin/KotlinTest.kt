@@ -27,6 +27,11 @@ object KotlinTest {
         }
         println("after let new user name = ${result?.name} user name = ${user?.name}")
 
+        println("#######function begin #######")
+        function()
+        println("#######function end#######")
+
+
         println("#######NPE begin #######")
         npe()
         println("#######NPE end#######")
@@ -48,6 +53,34 @@ object KotlinTest {
         }*/
     }
 }
+
+//function begin
+fun function() {
+    sum(1)
+    sum(1, 2)
+
+    var str = "abc"
+    reformat(str)
+    reformat(str, wordSeparator = '_')
+
+    double(100)
+}
+
+fun sum(x: Int, y: Int = 0, z: Int = 0): Int {
+    return x + y + z
+}
+
+fun reformat(
+    str: String,
+    normalizeCase: Boolean = true,
+    upperCaseFirstLetter: Boolean = true,
+    divideByCamelHumps: Boolean = false,
+    wordSeparator: Char = ' '
+) {
+}
+
+fun double(x: Int): Int = 2 * x
+//function end
 
 //Null safety
 fun npe() {
