@@ -9,6 +9,10 @@ inline fun Context.myToast(message: CharSequence, duration: Int = Toast.LENGTH_L
     Toast.makeText(this, message, duration).show()
 }
 
+inline fun String.isUpCase(): Boolean {
+    return this.toUpperCase() == this
+}
+
 fun withMethod() {
     var paint = Paint()
     paint.color = Color.BLACK
@@ -23,5 +27,4 @@ fun withMethod() {
         isAntiAlias = true
         this
     }
-
 }

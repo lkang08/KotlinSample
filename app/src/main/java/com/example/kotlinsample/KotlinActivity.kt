@@ -1,7 +1,11 @@
 package com.example.kotlinsample
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
@@ -13,8 +17,9 @@ import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
-class KotlinActivity : Activity() {
+class KotlinActivity : FragmentActivity() {
     private val tag = "System.out"
+    private var fragment: Fragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_kotlin)
@@ -33,6 +38,8 @@ class KotlinActivity : Activity() {
             anko()
         }
         withMethod()
+
+        initFragment()
     }
 
     private fun initRecyclerView() {
@@ -53,7 +60,7 @@ class KotlinActivity : Activity() {
             view.visibility = View.GONE
         })
 
-        //step 1
+        //step pic1
         mButton.setOnClickListener({ view: View ->
             view.visibility = View.GONE
         })
@@ -80,7 +87,7 @@ class KotlinActivity : Activity() {
     }
 
     private fun extensionFunction(user: User?) {
-        myToast("myToast from activity extension function")
+        myToast("myToast from activity extension collectionMethod")
     }
 
     private fun anko() {
@@ -88,6 +95,27 @@ class KotlinActivity : Activity() {
             yesButton { toast("yes") }
             noButton { toast("no") }
         }.show()
+    }
+
+    private fun initFragment() {
+        fragment = KotlinFragment()
+        FragmentBtn.setOnClickListener {
+            fragment?.let {
+                var fragmentManager = supportFragmentManager.beginTransaction()
+                when {
+                    it.isAdded -> {
+                        fragmentManager.remove(it)
+                        fragmentLL.visibility = View.GONE
+                    }
+                    else -> {
+                        fragmentManager.replace(R.id.fragmentLL, it)
+                        fragmentLL.visibility = View.VISIBLE
+                    }
+                }
+                fragmentManager.commit()
+            }
+
+        }
     }
 
     private fun initData(): List<User> {

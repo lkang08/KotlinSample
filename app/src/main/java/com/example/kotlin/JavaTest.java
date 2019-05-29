@@ -23,4 +23,15 @@ public class JavaTest {
 
     }
 
+    void smartCasts(Bill bill) {
+        if (bill instanceof WaterBill) {
+            WaterBill waterBill = (WaterBill) bill;
+            waterBill.water();
+        }
+        if (bill instanceof ElectricityBill) {
+            ElectricityBill electricityBill = (ElectricityBill) bill;
+            electricityBill.electricity();
+        }
+    }
+
 }

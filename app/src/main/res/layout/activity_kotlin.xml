@@ -52,11 +52,35 @@
         app:layout_constraintStart_toEndOf="@+id/toastBtn"
         app:layout_constraintTop_toBottomOf="@id/myText" />
 
+    <Button
+        android:id="@+id/FragmentBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Fragment"
+        android:textSize="15sp"
+        app:layout_constraintLeft_toRightOf="@id/toastBtn"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ankoBtn"
+        app:layout_constraintTop_toBottomOf="@id/myText" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mButton" />
+
+    <FrameLayout
+        android:id="@+id/fragmentLL"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        android:background="#ddd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -25,13 +25,14 @@ object KotlinTest {
             println("user name = ${it.name}")
             User("Kotlin 2", "girl")
         }
-        println("after let user name = ${result?.name}")
+        println("after let new user name = ${result?.name} user name = ${user?.name}")
+
         println("#######NPE begin #######")
         npe()
         println("#######NPE end#######")
         // lambda
 
-        function()
+        collectionMethod()
 
         println("##############")
         var r = test(10) { num1: Int, num2: Int ->
@@ -48,6 +49,7 @@ object KotlinTest {
     }
 }
 
+//Null safety
 fun npe() {
     var a: String = "abc"
     // a = null
@@ -58,7 +60,7 @@ fun npe() {
     var bLength = b?.length
 
 
-    //1 条件检查
+    //pic1 条件检查
     bLength = if (b != null) b.length else -1
 
     //2 安全调用
@@ -70,6 +72,7 @@ fun npe() {
     bLength = b?.length ?: -1
 
     //4 !!操作符
+    b = "bbb"
     bLength = b!!.length
 
     //5 安全的类型转换
@@ -78,12 +81,46 @@ fun npe() {
     println("aLength = $aLength bLength = $bLength")
 }
 
+//Smart casts
+fun smartCasts(bill: Bill) {
+    if (bill is WaterBill) {
+        bill.water()
+    }
+    if (bill is ElectricityBill) {
+        bill.electricity()
+    }
+}
 
-fun function() {
+//Lambda
+fun lambdaMethod(list: List<String>) {
+    var lambda = { a: Int, b: Int ->
+        println("in lambda a = $a b = $b")
+        a + b
+    }
+    lambda(100, 1)
+    lambda.invoke(100, 1)
+
+    list.forEach {
+        print(it)
+    }
+    list.forEach({ element ->
+        println(element)
+    })
+
+    list.forEach { element ->
+        println(element)
+    }
+
+    list.forEach(::testLambdaFunction)
+}
+
+fun testLambdaFunction(string: String) {}
+
+fun collectionMethod() {
     var person = arrayListOf(User(name = "zhangsan"),
-            User(name = "lisi", age = 20),
-            User(name = "wangwu", age = 30),
-            User(name = "lily", age = 18))
+        User(name = "lisi", age = 20),
+        User(name = "wangwu", age = 30),
+        User(name = "lily", age = 18))
     println(person.filter { it.age > 10 })
     println(person.map { it.name })
     println(person.all { it.age > 18 })
@@ -117,3 +154,25 @@ fun test(a: Int, b: (num1: Int, num2: Int) -> Int): Int {
 data class User(var name: String = "", var sex: String = "0", var age: Int = 10, var department: Department? = null)
 
 data class Department(var head: User? = null)
+
+public interface Bill {
+    fun getCount(): Int
+}
+
+public class WaterBill : Bill {
+    fun water() {
+    }
+
+    override fun getCount(): Int {
+        return 0
+    }
+}
+
+class ElectricityBill : Bill {
+    fun electricity() {
+    }
+
+    override fun getCount(): Int {
+        return 1
+    }
+}
