@@ -58,6 +58,7 @@ fun reformat(
     divideByCamelHumps: Boolean = false,
     wordSeparator: Char = ' '
 ) {
+    //do something
 }
 
 fun double(x: Int): Int = 2 * x
