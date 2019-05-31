@@ -16,6 +16,14 @@ inline fun String.isUpCase(): Boolean {
     return this.toUpperCase() == this
 }
 
+inline fun Any.log() {
+    println(this)
+}
+
+inline fun Any.log(tag: String) {
+    println("$tag : $this")
+}
+
 fun method(webView: WebView) {
     //1
     with(webView.settings) {

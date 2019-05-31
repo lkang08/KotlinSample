@@ -26,7 +26,7 @@ class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
         viewHolder.descriptionTv.text = user.description
         viewHolder.iconIg.setImageResource(user.icon)
 
-        data?.get(p)?.run {
+        data?.get(p)?.apply {
             with(viewHolder) {
                 nameTv.text = name
                 sexTv.text = if (sex == 0) "man" else "girl"

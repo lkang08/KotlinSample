@@ -19,16 +19,10 @@ object KotlinTest {
     var user: User? = null
     @JvmStatic
     fun main(args: Array<String>) {
-        user = User("Kotlin", "man")
-        var result = user?.let {
-            println("user name = ${this}")
-            println("user name = ${it.name}")
-            User("Kotlin 2", "girl")
-        }
-        println("after let new user name = ${result?.name} user name = ${user?.name}")
 
         println("#######function begin #######")
         function()
+        hof()
         println("#######function end#######")
 
 
@@ -38,19 +32,6 @@ object KotlinTest {
         // lambda
 
         collectionMethod()
-
-        println("##############")
-        var r = test(10) { num1: Int, num2: Int ->
-            var temp = 100
-            println("in lambda $temp")
-            num1 * num2 + num1
-        }
-        println("result = $r")
-        /*println("fibnoacci2()调用：")
-        for (i in fibnoacci2()) {
-            if (i > 100) break
-            println(i)
-        }*/
     }
 }
 
@@ -61,7 +42,7 @@ fun function() {
 
     var str = "abc"
     reformat(str)
-    reformat(str, wordSeparator = '_')
+    reformat(str, wordSeparator = '_') //默认参数，命名参数
 
     double(100)
 }
@@ -80,6 +61,40 @@ fun reformat(
 }
 
 fun double(x: Int): Int = 2 * x
+
+fun hof() {
+    //origin
+    var input = listOf(1, 2, 3)
+    var sum = 0
+    for (i in input) sum += i
+    sum.log("sum")
+
+    //hof
+    input = listOf(1, 2, 3)
+    input.fold(0) { a, b -> a + b }.log("fold")
+
+    //origin
+    var input2 = listOf(
+        listOf(1, 2, 3),
+        listOf(4, 5, 6),
+        listOf(7, 8, 9)
+    )
+    sum = 0
+    for (list in input2) {
+        var sub = 1
+        for (i in list) {
+            sub *= i
+        }
+        sum += sub
+    }
+    sum.log("origin sum")
+
+    //hof
+    input2.map { it.fold(1) { a, b -> a * b } }
+        .fold(0) { a, b -> a + b }
+        .log("hof sum")
+}
+
 //function end
 
 //Null safety
