@@ -50,36 +50,43 @@ class KotlinActivity : FragmentActivity() {
         //final
         mButton.setOnClickListener {
             it.visibility = View.GONE
+            println("click")
         }
 
         //step 0
         mButton.setOnClickListener(View.OnClickListener { view: View ->
             view.visibility = View.GONE
+            println("click")
         })
 
         //step pic1
         mButton.setOnClickListener({ view: View ->
             view.visibility = View.GONE
+            println("click")
         })
 
         //step 2
         mButton.setOnClickListener() { view: View ->
             view.visibility = View.GONE
+            println("click")
         }
 
         //step 3
         mButton.setOnClickListener { view: View ->
             view.visibility = View.GONE
+            println("click")
         }
 
         //step 4
         mButton.setOnClickListener { view ->
             view.visibility = View.GONE
+            println("click")
         }
 
         //step 5
         mButton.setOnClickListener {
             it.visibility = View.GONE
+            println("click")
         }
     }
 

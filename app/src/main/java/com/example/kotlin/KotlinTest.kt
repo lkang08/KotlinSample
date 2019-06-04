@@ -30,6 +30,12 @@ object KotlinTest {
         println("#######NPE end#######")
         // lambda
 
+        println("#######Constructer begin #######")
+        var person = Person("zhangsan")
+        person = Person("lisi", "boy")
+        person.test()
+        println("#######Constructer end#######")
+
         collectionMethod()
     }
 }
@@ -222,5 +228,19 @@ class ElectricityBill : Bill {
 
     override fun getCount(): Int {
         return 1
+    }
+}
+
+class Person constructor(var name: String) {
+    init {
+        println("init name = $name length = ${name.length}")
+    }
+
+    constructor(name: String, sex: String) : this(name) {
+        println("constructor name == $name sex = $sex")
+    }
+
+    fun test() {
+        println("test name = $name length = ${name.length}")
     }
 }
