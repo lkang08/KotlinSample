@@ -20,7 +20,6 @@ public class JavaTest {
         List rawList = new ArrayList();
         rawList.add("data1");
         rawList.add(2);
-
     }
 
     void smartCasts(Bill bill) {

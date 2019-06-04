@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.kotlin.log
 import kotlinx.android.synthetic.main.recycler_view_item.view.*
 
 class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {

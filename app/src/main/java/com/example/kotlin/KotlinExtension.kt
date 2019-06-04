@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.net.Uri
 import android.webkit.WebView
 import android.widget.Toast
+import org.w3c.dom.ls.LSInput
 
 inline fun Context.myToast(message: CharSequence, duration: Int = Toast.LENGTH_LONG) {
     Toast.makeText(this, message, duration).show()
@@ -73,7 +74,7 @@ fun method(webView: WebView) {
     }
 }
 
-fun withMethod() {
+fun testWith() {
     var paint = Paint()
     paint.color = Color.BLACK
     paint.strokeWidth = 1.0f
@@ -85,6 +86,25 @@ fun withMethod() {
         strokeWidth = 1.0f
         textSize = 18.0f
         isAntiAlias = true
+    }
+}
+
+fun testLet(list: MutableList<String>?) {
+    var size = list?.let {
+        it.add("a")
+        it.add("b")
+        it.size
+    }
+    println("size = $size")
+}
+
+fun testApply() {
+    ArrayList<String>().apply {
+        add("a")
+        add("b")
+        add("c")
+    }.let {
+        println(it)
     }
 }
 
@@ -102,3 +122,12 @@ fun createIntent2(intentData: String, intentAction: String) =
 fun createIntent3(intentData: String, intentAction: String) =
     Intent().also { it.action = intentAction }
         .also { it.data = Uri.parse(intentData) }
+
+
+class Singelton private constructor() {
+    companion object {
+        val instant: Singelton by lazy {
+            Singelton()
+        }
+    }
+}

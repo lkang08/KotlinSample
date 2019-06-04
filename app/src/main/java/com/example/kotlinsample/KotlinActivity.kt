@@ -1,16 +1,13 @@
 package com.example.kotlinsample
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.example.kotlin.myToast
-import com.example.kotlin.withMethod
+import com.example.kotlin.testWith
 import kotlinx.android.synthetic.main.activity_kotlin.*
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
@@ -37,7 +34,7 @@ class KotlinActivity : FragmentActivity() {
         ankoBtn.setOnClickListener {
             anko()
         }
-        withMethod()
+        testWith()
 
         initFragment()
     }

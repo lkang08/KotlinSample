@@ -19,7 +19,6 @@ object KotlinTest {
     var user: User? = null
     @JvmStatic
     fun main(args: Array<String>) {
-
         println("#######function begin #######")
         function()
         hof()
