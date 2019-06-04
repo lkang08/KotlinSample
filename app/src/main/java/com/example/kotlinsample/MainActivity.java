@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 v.setVisibility(View.GONE);
+                Log.d("test", "click");
             }
         });
         //SAM接口

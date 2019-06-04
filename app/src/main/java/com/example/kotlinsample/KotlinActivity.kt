@@ -59,31 +59,31 @@ class KotlinActivity : FragmentActivity() {
             println("click")
         })
 
-        //step pic1
+        //step lambda匿名函数
         mButton.setOnClickListener({ view: View ->
             view.visibility = View.GONE
             println("click")
         })
 
-        //step 2
+        //step 2 lambda表达式是函数调用的最后一个实参，就可以把它挪到小括号外面
         mButton.setOnClickListener() { view: View ->
             view.visibility = View.GONE
             println("click")
         }
 
-        //step 3
+        //step 3 当lambda是函数的唯一实参，就可以去掉空的小括号
         mButton.setOnClickListener { view: View ->
             view.visibility = View.GONE
             println("click")
         }
 
-        //step 4
+        //step 4 如果lambda的参数的类型可以被编译器推导出来，就可以省略它
         mButton.setOnClickListener { view ->
             view.visibility = View.GONE
             println("click")
         }
 
-        //step 5
+        //step 5 果这个lambda只有一个参数，并且这个参数的类型可以被推断出来
         mButton.setOnClickListener {
             it.visibility = View.GONE
             println("click")
