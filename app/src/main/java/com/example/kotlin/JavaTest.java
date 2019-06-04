@@ -17,9 +17,10 @@ public class JavaTest {
     }
 
     public static void main(String[] args) {
-        List rawList = new ArrayList();
+        List rawList = new ArrayList<String>();
         rawList.add("data1");
         rawList.add(2);
+
     }
 
     void smartCasts(Bill bill) {

@@ -12,10 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:text="Hello Kotlin"
         android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/mButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,44 +26,45 @@
         android:id="@+id/mButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="click"
         android:textSize="15sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/toastBtn"
         app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/toastBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="5dp"
         android:text="toast"
         android:textSize="15sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/ankoBtn"
-        app:layout_constraintLeft_toRightOf="@id/mButton"
-        app:layout_constraintTop_toBottomOf="@id/myText" />
-
-    <Button
-        android:id="@+id/ankoBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="anko"
-        android:textSize="15sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/FragmentBtn"
-        app:layout_constraintLeft_toRightOf="@id/toastBtn" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/mButton"
+        app:layout_constraintLeft_toRightOf="@id/mButton" />
 
     <Button
         android:id="@+id/FragmentBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="5dp"
         android:text="Fragment"
         android:textSize="15sp"
-        app:layout_constraintLeft_toRightOf="@id/ankoBtn"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/ankoBtn"
-        app:layout_constraintTop_toBottomOf="@id/myText" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/toastBtn"
+        app:layout_constraintLeft_toRightOf="@id/toastBtn" />
+
+    <Button
+        android:id="@+id/ankoBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="anko"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintBaseline_toBaselineOf="@+id/FragmentBtn"
+        app:layout_constraintLeft_toRightOf="@id/FragmentBtn"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
