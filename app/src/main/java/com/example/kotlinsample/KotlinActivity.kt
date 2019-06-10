@@ -1,6 +1,7 @@
 package com.example.kotlinsample
 
 import android.os.Bundle
+import android.provider.Contacts
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -9,12 +10,20 @@ import android.view.View
 import com.example.kotlin.myToast
 import com.example.kotlin.testWith
 import kotlinx.android.synthetic.main.activity_kotlin.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
 
-class KotlinActivity : FragmentActivity() {
+class KotlinActivity : FragmentActivity(), CoroutineScope by MainScope() {
     private val tag = "System.out"
     private var fragment: Fragment? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +45,31 @@ class KotlinActivity : FragmentActivity() {
         }
         testWith()
 
+        xiecheng()
         initFragment()
+    }
+
+    fun xiecheng() {
+        GlobalScope.launch(Dispatchers.IO) {
+            println("xiecheng launch thread = ${Thread.currentThread().name}")
+            var result = withContext(Dispatchers.Main) {
+                println("xiecheng withContext thread = ${Thread.currentThread().name}")
+                "result"
+            }
+            println("xiecheng launch thread = ${Thread.currentThread().name} result = $result")
+        }
+        launch {
+            println("launch thread = ${Thread.currentThread().name}")
+            withContext(Dispatchers.IO) {
+                println("launch withContext thread = ${Thread.currentThread().name}")
+                delay(1000)
+                println("launch withContext after 1 delay thread = ${Thread.currentThread().name}")
+                delay(1000)
+                println("launch withContext after 2 delay thread = ${Thread.currentThread().name}")
+                delay(1000)
+                println("launch withContext after 3 delay thread = ${Thread.currentThread().name}")
+            }
+        }
     }
 
     private fun initRecyclerView() {

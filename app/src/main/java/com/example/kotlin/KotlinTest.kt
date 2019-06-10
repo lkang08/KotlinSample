@@ -1,5 +1,8 @@
 package com.example.kotlin
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
 object KotlinTest {
     @JvmField
     var jvmStr = "str1"
@@ -16,7 +19,6 @@ object KotlinTest {
         println("kotlin oldMethod println normalStr = $normalStr")
     }
 
-    var user: User? = null
     @JvmStatic
     fun main(args: Array<String>) {
         println("#######function begin #######")
